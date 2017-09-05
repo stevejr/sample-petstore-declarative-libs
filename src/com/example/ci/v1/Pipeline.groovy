@@ -88,7 +88,7 @@ class Pipeline implements Serializable {
 
     }
 
-    private CookbookPipeline(Builder builder) {
+    private Pipeline(Builder builder) {
         this.script = builder.script
         this.stages = builder.stages
         this.steps = builder.steps
