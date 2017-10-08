@@ -3,13 +3,7 @@
  */
 import groovy.json.JsonSlurper
 
-def call(body) {
-    def config = [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = config
-
-    body()
-
+def call(Map config) {
     def vfiJSON = readJSON file: config.vfiFile
     echo "vfi Json before update: ${vfiJSON}"
 
