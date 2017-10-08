@@ -11,5 +11,8 @@ def call(body) {
     body()
 
     def vfiJSON = readJSON file: config.vfiFile
-    echo "vfi Json: ${vfiJSON}"
+    echo "vfi Json before update: ${vfiJSON}"
+
+    vfiJSON[config.component]['address'] = config.address
+    echo "vfi Json after update: ${vfiJSON}"
 }
