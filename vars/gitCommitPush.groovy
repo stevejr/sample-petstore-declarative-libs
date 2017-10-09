@@ -14,6 +14,7 @@ def call(Map config) {
     sh "git add ${config.file}"
     sh "git commit -m \"${config.message}\""
 
+    sh "git tag -a ${config.tag} -m \"${config.message}\""
     withCredentials([usernamePassword(credentialsId: config.credentials, passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh("git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${config.repo}")
     }
