@@ -6,7 +6,7 @@ def call(Map config) {
 
     // push back
     def branchName = sh(returnStdout: true, script: "git symbolic-ref --short HEAD").trim()
-    def message = "Updated ${config.component} address to value ${config.address}"
+    def message = config.message
 
     sh "git config user.email \"${config.git-email}\""
     sh "git config --global user.name \"${config.git-user}\""
