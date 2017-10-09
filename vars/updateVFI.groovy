@@ -14,4 +14,12 @@ def call(Map config) {
     // write back to file
     def vfiJSONPretty = new JsonBuilder(vfiJSON).toPrettyString()
     sh "echo ${vfiJSON} > ${config.vfiFile}"
+
+    // push back
+    def branchName =  sh (returnStdout: true, script: "git symbolic-ref --short HEAD").trim()
+    def message = "Updated ${config.component} address to value ${config.address}"
+
+    git add ${config.vfiFile}"
+    sh "git commit -m \"${message}\""
+    sh "git push origin ${branchName}"
 }
